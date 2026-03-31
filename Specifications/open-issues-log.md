@@ -97,8 +97,8 @@
 ### OI-009
 
 - 論点: JudgeResult の最小フィールド集合
-- 概要: 第1版では JudgeResult を pass / fail と詳細情報を持つ最小構造として扱うが、status、violation summary、grounding gap、metric snapshot のどこまでを正文で必須にするかは未決
+- 概要: 第1版では JudgeResult の最小フィールドを `status`、`violation_summary`、`grounding_gaps`、`metric_snapshot` とし、verifier ごとの詳細ログや改善提案は付随詳細として扱う
 - 優先度: 中
 - 関連ファイル: Specifications/03_コア概念.md, Specifications/10_judgeと検証.md, Specifications/11_acceptと受理ゲート.md, Specifications/glossary.md
-- 必要な判断: Acceptance Gate と fallback が依存する最小フィールドを決める
-- 状態: open
+- 必要な判断: 将来版で詳細ログ、改善提案、集約スコアをどこまで標準化するかを追跡する
+- 状態: resolved

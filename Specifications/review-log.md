@@ -52,3 +52,13 @@
 - 件数: 3
 - 状態: reflected
 - 次アクション: JudgeResult の最小フィールドを第10章と第11章の接続点として確定する
+
+### RV-004
+
+- 日付: 2026-03-31
+- 対象: Specifications/10_judgeと検証.md, Specifications/11_acceptと受理ゲート.md, Documents/Kriteia言語設計詳細.md
+- レビュー種別: judge / accept 整合レビュー
+- 主な指摘: JudgeResult の最小フィールドを `status`、`violation_summary`、`grounding_gaps`、`metric_snapshot` に固定した。Acceptance Gate の参照情報を本文へ展開し、一次資料の古い accepted 値直構築例には現行 v1 方針との差分注記を付ける。
+- 件数: 2
+- 状態: reflected
+- 次アクション: 一次資料と仕様正文の差分が残る箇所は、概念説明と規範仕様のどちらかを明示する

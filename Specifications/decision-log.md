@@ -142,3 +142,13 @@
 - 理由: 一次資料の `accept judged` 例と実行モデル上の最終段階という役割に最も整合し、`accepted<T>` の opaque wrapper 方針とも衝突しないため
 - 影響ファイル: Specifications/03_コア概念.md, Specifications/glossary.md, Specifications/06_文法と構文.md, Specifications/11_acceptと受理ゲート.md
 - 次アクション: fallback 側の値返却や人手エスカレーションは `accept` とは別経路として記述を整理する
+
+### DL-013
+
+- 日付: 2026-03-31
+- 論点: JudgeResult の第1版最小フィールド
+- 判断: 第1版の JudgeResult は `status`、`violation_summary`、`grounding_gaps`、`metric_snapshot` の 4 フィールドを最小集合として扱う
+- 状態: accepted
+- 理由: Acceptance Gate が pass / fail 判定、主要な不受理理由、根拠不足、metric の補助値を過不足なく受け取れる最小構造になるため
+- 影響ファイル: Specifications/10_judgeと検証.md, Specifications/11_acceptと受理ゲート.md, Specifications/glossary.md, Specifications/open-issues-log.md
+- 次アクション: 改善提案や verifier ごとの詳細ログは第1版では付随詳細として扱い、完全な集約理論は将来版へ送る

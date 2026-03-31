@@ -33,7 +33,7 @@
 
 ### 11.2 受理ゲート
 
-Acceptance Gate は、`grounded draft candidate`、JudgeResult、named `policy`、`metric` を統合判定し、候補を `accepted artifact` へ昇格させてよいかを決める概念的境界である。第1版では、この 4 つを最小入力集合として固定し、内部モジュールとしての詳細は固定しない。少なくとも named `policy` ブロックの `require` 条件が満たされ、JudgeResult が受理可能な内容を返していることを確認する役割だけを残す。ここで重要なのは、どれか一つが良好でも、他の条件が不足すれば受理不可になりうる点である。
+Acceptance Gate は、`grounded draft candidate`、JudgeResult、named `policy`、`metric` を統合判定し、候補を `accepted artifact` へ昇格させてよいかを決める概念的境界である。第1版では、この 4 つを最小入力集合として固定し、内部モジュールとしての詳細は固定しない。JudgeResult については、少なくとも `status`、`violation_summary`、`grounding_gaps`、`metric_snapshot` の 4 フィールドを参照し、named `policy` ブロックの `require` 条件が満たされているかと合わせて判定する。ここで重要なのは、どれか一つが良好でも、他の条件が不足すれば受理不可になりうる点である。
 
 ### 11.3 accepted 型への昇格
 
@@ -54,6 +54,15 @@ Kriteia における外部公開可能性とは、単にシリアライズ可能
 - `accepted artifact` は通常候補と同一視しない。
 - 外部境界を越えられるのは受理済み成果物に限る。
 
+## Acceptance Gate が参照する最小情報
+
+- `grounded draft candidate`: 主張と根拠が接続された受理直前候補
+- `JudgeResult.status`: 受理可能かどうかの最終状態
+- `JudgeResult.violation_summary`: 不受理理由の要約
+- `JudgeResult.grounding_gaps`: 未接続根拠や不足箇所
+- `JudgeResult.metric_snapshot`: 補助的な metric 値の要約
+- named `policy`: `require` 条件列で記述された受理条件
+
 ## 第1版で扱わないもの
 
 - partial accept の形式化
@@ -70,6 +79,7 @@ Kriteia における外部公開可能性とは、単にシリアライズ可能
 
 - 第1版の `accepted<T>` は `accept` のみが生成できる opaque wrapper とする。
 - 第1版の受理判定は `grounded draft candidate`、JudgeResult、named `policy`、`metric` を最小入力集合として扱う。
+- JudgeResult の最小フィールドは `status`、`violation_summary`、`grounding_gaps`、`metric_snapshot` とする。
 
 ## TODO
 
@@ -82,4 +92,5 @@ Kriteia における外部公開可能性とは、単にシリアライズ可能
 - `accept` と Acceptance Gate の役割が第1版の最小粒度で説明されている。
 - `draft<T>` と `accepted<T>` の違いが受理条件と接続されている。
 - `accepted<T>` の opaque wrapper としての意味が明確になっている。
+- Acceptance Gate が参照する JudgeResult の最小情報が明示されている。
 - Kriteia が「何を通してよいか」を中心に置く言語であることが、この章で再確認できる。

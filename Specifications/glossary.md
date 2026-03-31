@@ -63,10 +63,10 @@
 ### JudgeResult
 
 - 英語表記: JudgeResult
-- 定義: `judge` が返す構造化結果。第1版では pass / fail と詳細情報を持つ最小構造として扱う
+- 定義: `judge` が返す構造化結果。第1版では `status`、`violation_summary`、`grounding_gaps`、`metric_snapshot` を持つ最小構造として扱う
 - 主な根拠資料: Specifications/10_judgeと検証.md, Specifications/04_実行モデル.md
 - 関連用語: judge, grounded draft candidate, accept
-- 要確認: 最小フィールド集合をどこまで正文で固定するか
+- 要確認: verifier ごとの詳細ログや改善提案を正文必須に含めるか
 
 ### grounded draft candidate
 

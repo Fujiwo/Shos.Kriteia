@@ -35,7 +35,14 @@
 
 ### 10.3 JudgeResult
 
-judge の結果は単なる bool ではなく、失敗理由、根拠不足箇所、改善提案、評価値を含む構造化値として扱う必要がある。これにより、judge は accept 前の関門であるだけでなく、再探索、fallback、人手エスカレーションの入力にもなる。第1版では JudgeResult を「pass/fail と詳細情報を持つ最小構造」として扱い、完全な集約理論や豊富な付加情報までは正文で固定しない。
+judge の結果は単なる bool ではなく、失敗理由、根拠不足箇所、改善提案、評価値を含む構造化値として扱う必要がある。これにより、judge は accept 前の関門であるだけでなく、再探索、fallback、人手エスカレーションの入力にもなる。第1版では JudgeResult を次の 4 フィールドを持つ最小構造として扱う。
+
+- `status`: `pass` または `fail`
+- `violation_summary`: 主な不整合、policy 不成立、検証失敗をまとめた要約
+- `grounding_gaps`: 根拠不足または未接続 claim の一覧
+- `metric_snapshot`: accept 判定へ渡す metric 値の要約
+
+改善提案や verifier ごとの詳細ログは存在しうるが、第1版の正文では必須フィールドに含めない。
 
 ### 10.4 policy と metric
 
@@ -53,6 +60,13 @@ Judge Pipeline は、どの検証器をどの順で適用し、どの結果を�
 - metric 評価
 - 根拠不足検出
 
+## JudgeResult の最小フィールド
+
+- `status`
+- `violation_summary`
+- `grounding_gaps`
+- `metric_snapshot`
+
 ## 第1版で扱わないもの
 
 - JudgeResult の完全な集約理論
@@ -69,12 +83,11 @@ Judge Pipeline は、どの検証器をどの順で適用し、どの結果を�
 ## 決定メモ
 
 - 第1版では judge を構造化検証境界として維持する。
-- JudgeResult は pass/fail と詳細情報を持つ最小構造として扱う。
+- JudgeResult は `status`、`violation_summary`、`grounding_gaps`、`metric_snapshot` を持つ最小構造として扱う。
 - `policy` は `require` 条件列を持つ名前付きブロックとして judge から参照する。
 
 ## TODO
 
-- JudgeResult の最小フィールド案を作る。
 - `policy` 違反と grounding 不足の報告形式を切り分ける。
 - judge 失敗時の fallback 接続を第12章と整合させる。
 
@@ -82,4 +95,5 @@ Judge Pipeline は、どの検証器をどの順で適用し、どの結果を�
 
 - `judge` の構文と役割が説明されている。
 - JudgeResult が bool ではなく構造化結果であることが明確になっている。
+- JudgeResult の最小フィールドが Acceptance Gate との接続を意識して固定されている。
 - `policy`、`metric`、Judge Pipeline の関係が最小粒度で整理されている。
