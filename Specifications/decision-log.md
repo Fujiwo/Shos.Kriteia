@@ -122,3 +122,23 @@
 - 理由: 04章の実行モデルと 11章の受理モデルで同じ境界を共有し、accept 判定の責務を過不足なく固定するため
 - 影響ファイル: Specifications/04_実行モデル.md, Specifications/11_acceptと受理ゲート.md
 - 次アクション: judge 実行と Acceptance Gate 判定の順序はこの入力集合を前提に記述を揃える
+
+### DL-011
+
+- 日付: 2026-03-31
+- 論点: `accepted artifact` と `accepted<T>` の関係
+- 判断: 第1版では `accepted artifact` を独立した第三の型とはせず、`accept` を通過した `accepted<T>` の値を業務境界側から見た概念名として扱う
+- 状態: accepted
+- 理由: 概念章と型章の用語を分離しすぎず、受理済み値の意味論と外部公開可能性を同じ境界で説明できるため
+- 影響ファイル: Specifications/03_コア概念.md, Specifications/glossary.md, Specifications/05_型システム.md, Specifications/11_acceptと受理ゲート.md
+- 次アクション: 概念説明では `accepted artifact`、型説明では `accepted<T>` を使い分ける
+
+### DL-012
+
+- 日付: 2026-03-31
+- 論点: `accept` の第1版文法上の位置づけ
+- 判断: 第1版の `accept` は `accept <judge-result-or-candidate>` の形を取る文として扱い、値を返す式としては許可しない
+- 状態: accepted
+- 理由: 一次資料の `accept judged` 例と実行モデル上の最終段階という役割に最も整合し、`accepted<T>` の opaque wrapper 方針とも衝突しないため
+- 影響ファイル: Specifications/03_コア概念.md, Specifications/glossary.md, Specifications/06_文法と構文.md, Specifications/11_acceptと受理ゲート.md
+- 次アクション: fallback 側の値返却や人手エスカレーションは `accept` とは別経路として記述を整理する

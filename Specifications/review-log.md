@@ -42,3 +42,13 @@
 - 件数: 4
 - 状態: in-progress
 - 次アクション: 未解決論点を潰しつつ、残章と比較して簡素化粒度をそろえる
+
+### RV-003
+
+- 日付: 2026-03-31
+- 対象: Specifications/03_コア概念.md, Specifications/glossary.md, Specifications/06_文法と構文.md, Specifications/open-issues-log.md
+- レビュー種別: 用語整合レビュー
+- 主な指摘: `grounded draft candidate`、JudgeResult、`policy`、`accepted<T>` の定義が章と用語集で揃っていなかったため反映した。`accept` の文法位置づけを文へ固定し、resolved 済み論点を用語集と文法章へ伝播した。残る明示的未決は JudgeResult の最小フィールド集合。
+- 件数: 3
+- 状態: reflected
+- 次アクション: JudgeResult の最小フィールドを第10章と第11章の接続点として確定する

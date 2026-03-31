@@ -93,3 +93,12 @@
 - 関連ファイル: Specifications/08_探索と分岐.md, Specifications/16_将来拡張と非スコープ.md
 - 必要な判断: 第1版本文に残す最小探索契約と、将来版送りの一覧を決める
 - 状態: open
+
+### OI-009
+
+- 論点: JudgeResult の最小フィールド集合
+- 概要: 第1版では JudgeResult を pass / fail と詳細情報を持つ最小構造として扱うが、status、violation summary、grounding gap、metric snapshot のどこまでを正文で必須にするかは未決
+- 優先度: 中
+- 関連ファイル: Specifications/03_コア概念.md, Specifications/10_judgeと検証.md, Specifications/11_acceptと受理ゲート.md, Specifications/glossary.md
+- 必要な判断: Acceptance Gate と fallback が依存する最小フィールドを決める
+- 状態: open

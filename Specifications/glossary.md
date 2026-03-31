@@ -60,21 +60,37 @@
 - 関連用語: policy, accept
 - 要確認: 複数 judge の合成規則
 
+### JudgeResult
+
+- 英語表記: JudgeResult
+- 定義: `judge` が返す構造化結果。第1版では pass / fail と詳細情報を持つ最小構造として扱う
+- 主な根拠資料: Specifications/10_judgeと検証.md, Specifications/04_実行モデル.md
+- 関連用語: judge, grounded draft candidate, accept
+- 要確認: 最小フィールド集合をどこまで正文で固定するか
+
+### grounded draft candidate
+
+- 英語表記: grounded draft candidate
+- 定義: Ground 段階を経て主張と `evidence` の対応付けを受けた draft 候補。Acceptance Gate に進める受理前候補状態を指す
+- 主な根拠資料: Specifications/04_実行モデル.md, Specifications/08_探索と分岐.md, Specifications/11_acceptと受理ゲート.md
+- 関連用語: draft 型, JudgeResult, accept
+- 要確認: なし
+
 ### accept
 
 - 英語表記: accept
 - 定義: 候補成果物を受理済み成果物へ昇格させる唯一の操作
 - 主な根拠資料: Documents/Kriteia言語設計詳細.md, Documents/追加のAIネイティブ言語アイディア.md
 - 関連用語: accepted artifact, judge
-- 要確認: 昇格条件の詳細
+- 要確認: fallback と人手承認をどこまで accept 周辺構文へ含めるか
 
 ### accepted artifact
 
 - 英語表記: accepted artifact
-- 定義: 外部公開や後続処理に使ってよい受理済み成果物
+- 定義: `accept` を通過した `accepted<T>` の値を、外部公開や後続処理の側から見た概念名
 - 主な根拠資料: Documents/Kriteia言語設計詳細.md
 - 関連用語: accept, accepted 型
-- 要確認: 独立概念か accepted 型の値か
+- 要確認: なし
 
 ### semantic type
 
@@ -95,18 +111,18 @@
 ### accepted 型
 
 - 英語表記: accepted type
-- 定義: 受理済み成果物を表す型
+- 定義: `accept` のみが生成できる opaque wrapper としての受理済み型
 - 主な根拠資料: Documents/Kriteia言語設計詳細.md
 - 関連用語: draft 型, accept
-- 要確認: wrapper か状態付き型か
+- 要確認: 将来版で typestate や線形性を導入するか
 
 ### policy
 
 - 英語表記: policy
-- 定義: 受理条件を表す制約集合
+- 定義: 名前付き `policy` ブロックと `require` 条件列で表される受理条件の束
 - 主な根拠資料: Documents/Kriteia言語設計詳細.md, Documents/追加のAIネイティブ言語アイディア.md
 - 関連用語: judge, metric
-- 要確認: 専用言語として分離するか
+- 要確認: `require` 以外の論理合成や外部 evaluator 連携をどこまで標準化するか
 
 ### metric
 
